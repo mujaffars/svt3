@@ -1,6 +1,6 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.mujaffars.calldemo"
+        id        = "com.mujaffars.calldemoadmin"
         version   = "1.0.0">
     <name>Shiv Traders</name>
     
