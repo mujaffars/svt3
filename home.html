@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap theme CSS -->
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="js/datepicker/css/redmond/jquery-ui-1.10.1.custom.min.css" />
+
+        <title>Hello World</title>
+    </head>
+    <body role="document" onload="onLoad()" onresize="onResize()">
+
+        <script>
+        function onLoad() {
+            if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+                document.addEventListener('deviceready', initApp, false);
+            } else {
+                initApp();
+            }
+        }
+        var admobid = {};
+        if (/(android)/i.test(navigator.userAgent)) {
+            admobid = {
+                banner: 'ca-app-pub-3868593263837372/8649306643',
+                interstitial: 'ca-app-pub-3868593263837372/4224486649'
+            };
+        } else if (/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
+            admobid = {
+                banner: 'ca-app-pub-3868593263837372/8649306643',
+                interstitial: 'ca-app-pub-3868593263837372/4224486649'
+            };
+        } else {
+            admobid = {
+                banner: 'ca-app-pub-3868593263837372/8649306643',
+                interstitial: 'ca-app-pub-3868593263837372/4224486649'
+            };
+        }
+        function initApp() {
+            if (!AdMob) {/* alert( 'admob plugin not ready' );*/
+                return;
+            }
+            initAd();
+            // display a banner at startup
+            createSelectedBanner();
+        }
+        function initAd() {
+            var defaultOptions = {
+                // bannerId: admobid.banner,
+                // interstitialId: admobid.interstitial,
+                // adSize: 'SMART_BANNER',
+                // width: integer, // valid when set adSize 'CUSTOM'
+                // height: integer, // valid when set adSize 'CUSTOM'
+                position: AdMob.AD_POSITION.BOTTOM_CENTER,
+                // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
+                bgColor: 'black', // color name, or '#RRGGBB'
+                // x: integer,		// valid when set position to 0 / POS_XY
+                // y: integer,		// valid when set position to 0 / POS_XY
+                isTesting: false, // set to true, to receiving test ad for testing purpose
+                // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+            };
+            AdMob.setOptions(defaultOptions);
+            registerAdEvents();
+        }
+        // optional, in case respond to events or handle error
+        function registerAdEvents() {
+            // new events, with variable to differentiate: adNetwork, adType, adEvent
+            document.addEventListener('onAdFailLoad', function(data) {
+                /*alert('error: ' + data.error +
+                 ', reason: ' + data.reason +
+                 ', adNetwork:' + data.adNetwork +
+                 ', adType:' + data.adType +
+                 ', adEvent:' + data.adEvent);*/ // adType: 'banner' or 'interstitial'
+            });
+            document.addEventListener('onAdLoaded', function(data) {
+            });
+            document.addEventListener('onAdPresent', function(data) {
+            });
+            document.addEventListener('onAdLeaveApp', function(data) {
+            });
+            document.addEventListener('onAdDismiss', function(data) {
+            });
+        }
+        // click button to call following functions
+        function getSelectedAdSize() {
+            var i = document.getElementById("adSize").selectedIndex;
+            var items = document.getElementById("adSize").options;
+            return items[i].value;
+        }
+        function getSelectedPosition() {
+            var i = document.getElementById("adPosition").selectedIndex;
+            var items = document.getElementById("adPosition").options;
+            return parseInt(items[i].value);
+        }
+        function createSelectedBanner() {
+            var overlap = document.getElementById('overlap').checked;
+            var offsetTopBar = document.getElementById('offsetTopBar').checked;
+            AdMob.createBanner({adId: admobid.banner, overlap: overlap, offsetTopBar: offsetTopBar, adSize: getSelectedAdSize(), position: getSelectedPosition()});
+        }
+        function createBannerOfGivenSize() {
+            var w = document.getElementById('w').value;
+            var h = document.getElementById('h').value;
+            AdMob.createBanner({adId: admobid.banner,
+                adSize: 'CUSTOM', width: w, height: h,
+                position: getSelectedPosition()});
+        }
+        function showBannerAtSelectedPosition() {
+            AdMob.showBanner(getSelectedPosition());
+        }
+        function showBannerAtGivenXY() {
+            var x = document.getElementById('x').value;
+            var y = document.getElementById('y').value;
+            AdMob.showBannerAtXY(x, y);
+        }
+        function prepareInterstitial() {
+            var autoshow = document.getElementById('autoshow').checked;
+            AdMob.prepareInterstitial({adId: admobid.interstitial, autoShow: autoshow});
+        }
+        function onResize() {
+            var s = document.getElementById('sizeinfo');
+            s.innerHTML = "web view: " + window.innerWidth + " x " + window.innerHeight;
+        }
+        </script>
+
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Call log</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container theme-showcase" role="main">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tblBody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div> <!-- /container -->
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/jquery.toaster.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/datepicker/js/jquery-ui-1.10.1.custom.min.js"></script>
+    </body>
+</html>

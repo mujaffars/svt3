@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap theme CSS -->
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/jumbotron-narrow.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="js/datepicker/css/redmond/jquery-ui-1.10.1.custom.min.css" />
+
+        <title>Call Log</title>
+    </head>
+    <body onload="onLoad()">
+
+        <form id="loginForm">
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Call log</a>
+                        <a class="lnkLogOut navbar-brand hide" href="#">Exit</a>
+                        <a class="lnkRefresh navbar-brand" href="#">Refresh</a>
+                        <input id="btnRefresh" type="button" value="Refresh" class="btn btn-info btn-lg hide"/>
+                    </div>
+                </div>
+            </nav>
+            <div class="cntainr">
+                <div class="">
+                    <div>
+                        <table class="tblLogin table table-striped table-bordered clsTbl">
+                            <thead>
+                                <tr>
+                                    <th>Enter your mobile no.</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tblBody">
+                                <tr>
+                                    <td>
+                                        <input name="phoneNumber" id="phoneNumber" type="text" maxlength="10" value=""/>
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="btnSendCode" type="button" value="Submit" class="btn btn-success btn-lg"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="tblVerify table table-striped table-bordered hide clsTbl">
+                            <thead>
+                                <tr>
+                                    <th>Enter pin received on <span class="enteredMNo"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="tblBody">
+                                <tr>
+                                    <td>
+                                        <input name="txtPin" id="txtPin" type="text" value=""/>
+                                    </td>                                
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input id="btnCheckPin" type="button" value="Verify" class="btn btn-success btn-lg"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div id="divSelectUser"></div>
+                        <table class="tableRecords table table-striped table-bordered hide">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tblBody">
+
+                            </tbody>
+                        </table>
+
+                        <div id="divLoading" class="hide">
+                            <img src="img/ajax-loader.gif" class="imgLoader"/><br/>
+                            Loading...
+                        </div>
+
+                        <div id="divCallRecords">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="latlongText" class="hide">
+
+            </div>
+            <div id="divCheckPin" class="hide">
+
+            </div>
+            <div id="divUserId" class="hide">
+
+            </div>
+            <div id="divUserList" class="hide">
+
+            </div>
+        </form>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/datepicker/js/jquery-ui-1.10.1.custom.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/additional-methods.js"></script>
+
+
+    </body>
+</html>
