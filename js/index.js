@@ -190,9 +190,10 @@ function getRecords() {
                 id: 'sltUsers'
             });
 
+            $(userSelect).append('<option value="">All</option>');
             $($.parseHTML(resp)).find("#GridView1").find('tr').each(function () {
                 console.log($(this).text());
-                if ($(this).find("td:nth-child(1)").text() !== 'ac_code') {
+                if ($(this).find("td:nth-child(1)").text() !== 'ac_code' && $(this).find("td:nth-child(2)").text() !== '') {
                     $(userSelect).append($('<option>', {value: $(this).find("td:nth-child(1)").text(), text: $(this).find("td:nth-child(2)").text()}));
                 }
             })
