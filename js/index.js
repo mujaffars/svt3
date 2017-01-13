@@ -217,7 +217,8 @@ function subGetRecords() {
     if (localStorage.getItem("userId") !== '' && localStorage.getItem("userId") !== undefined) {
         fdata = {
             call: 'P',
-            id: localStorage.getItem("userId")
+            id: localStorage.getItem("userId"),
+            appVersion: 1.1
         };
 
     } else {
