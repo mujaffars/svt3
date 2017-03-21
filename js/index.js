@@ -225,7 +225,7 @@ function subGetRecords() {
         fdata = {
             call: 'P'
         };
-        callUrl = 'http://shivtraderssangli.com/androidadmin.aspx';
+        callUrl = 'http://www.shivtraderssangli.com/androidadmin.aspx';
     }
     $.ajax({
         url: callUrl,

@@ -1,5 +1,5 @@
-var serverHost = 'http://shivtraderssangli.com/getdata.aspx';
-var getUserList = 'http://shivtraderssangli.com/androiduser.aspx?user=user';
+var serverHost = 'http://www.shivtraderssangli.com/getdata.aspx';
+var getUserList = 'http://www.shivtraderssangli.com/androiduser.aspx?user=user';
 
 //var serverHost = 'http://localhost:56927/wwwroot/getdata.aspx';
 //http://vas.mobilogi.com/api.php?username=stipls&password=pass12345&route=1&sender=STIPLS&mobile[]=9503426967&message[]=TEST SMS';
