@@ -40,7 +40,7 @@ function onLoad() {
     }
     
     $.ajax({
-        url: 'http://rachanaautomation.com/dailies',
+        url: 'http://rachanaautomation.com/dailies/?reqDate=14-04-2017',
         type: 'GET',
         dataType: 'html',
         async: true,
