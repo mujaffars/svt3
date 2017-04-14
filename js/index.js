@@ -38,6 +38,18 @@ function onLoad() {
     } else {
         initApp();
     }
+    
+    $.ajax({
+        url: 'http://rachanaautomation.com/dailies',
+        type: 'GET',
+        dataType: 'html',
+        async: true,
+        error: function () {
+        },
+        success: function (resp) {
+            alert(resp);
+        }
+    });
 }
 
 function initApp() {
